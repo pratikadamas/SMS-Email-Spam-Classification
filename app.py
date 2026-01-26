@@ -1,6 +1,15 @@
+import nltk
 import streamlit as st
 import pickle
 from text_utils import transform_text
+    
+@st.cache_resource
+def setup_nltk():
+    nltk.download('punkt')
+    nltk.download('punkt_tab')
+    nltk.download('stopwords')
+
+setup_nltk()
 
 # Load model & vectorizer
 tfidf = pickle.load(open("vectorizer.pkl", "rb"))
